@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Complex Marker Icons</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // The following example creates complex markers to indicate crimes near
+      // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+      // to the base of the flagpole.
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10.5,
+          center: {lat: 40.730610, lng: -73.935242}
+        });
+
+        setMarkers(map);
+      }
+
+      // Data for the markers consisting of a name, a LatLng and a zIndex for the
+      // order in which these markers should display on top of each other.
+      var crimes = [['AsianFem18', 40.61549, -74.1558], ['AsianFem18', 40.75738, -73.834], ['AsianFem18', 40.57557, -73.9809], ['AsianFem18', 40.57616, -73.976], ['AsianFem18', 40.59406, -73.9609], ['AsianFem18', 40.59498, -74.0011], ['AsianFem18', 40.60207, -74.0027], ['AsianFem18', 40.6049, -74.0015], ['AsianFem18', 40.6073, -74.005], ['AsianFem18', 40.6099, -73.9224], ['AsianFem18', 40.62215, -74.0273], ['AsianFem18', 40.62573, -73.991], ['AsianFem18', 40.67037, -73.9128], ['AsianFem18', 40.67618, -73.805], ['AsianFem18', 40.67707, -73.741], ['AsianFem18', 40.68113, -73.9744], ['AsianFem18', 40.68594, -73.8322], ['AsianFem18', 40.6924, -73.9901], ['AsianFem18', 40.69844, -73.8311], ['AsianFem18', 40.71554, -73.7995], ['AsianFem18', 40.73286, -73.8639], ['AsianFem18', 40.73286, -73.8639],['AsianFem18', 40.73393, -73.8716], ['AsianFem18', 40.73864, -73.8923],['AsianFem18', 40.74466, -73.7585],['AsianFem18', 40.74554, -73.9039],['AsianFem18', 40.74691, -73.7683],['AsianFem18', 40.75043, -73.9893],['AsianFem18', 40.75117, -73.989],['AsianFem18', 40.75659, -73.8756],['AsianFem18', 40.75692, -73.986],['AsianFem18', 40.75823, -73.9774],['AsianFem18', 40.75987, -73.829],['AsianFem18', 40.76013, -73.8871], ['AsianFem18', 40.76178, -73.7272], ['AsianFem18', 40.76187, -73.9664],['AsianFem18', 40.76397, -73.8869],['AsianFem18', 40.84037, -73.845]] ;
+
+      function setMarkers(map) {
+        // Adds markers to the map.
+
+        // Marker sizes are expressed as a Size of X,Y where the origin of the image
+        // (0,0) is located in the top left of the image.
+
+        // Origins, anchor positions and coordinates of the marker increase in the X
+        // direction to the right and in the Y direction down.
+        var image = {
+          url: 'http://maps.google.com/mapfiles/ms/micons/caution.png',
+          
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(100 , 175),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+        // Shapes define the clickable region of the icon. The type defines an HTML
+        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+        // The final coordinate closes the poly by connecting to the first coordinate.
+        var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };
+        for (var i = 0; i < crimes.length; i++) {
+          var crime = crimes[i];
+          var marker = new google.maps.Marker({
+            position: {lat: crime[1], lng: crime[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: crime[0],
+            zIndex: crime[3]
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3_xok-TQUL0BagOPW1_CW457yLVb8R5o&callback=initMap">
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="http://fonts.googleapis.com/css?family=Permanent Marker:regular" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Oswald:bold" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Asian Male - Under 18 Crimes</title>
+    <style>
+      body {
+  background-color: #d3d3d3;
+       font-family: 'Oswald', serif;
+       color: black;
+} 
+      h1, h2, h3, h4, h5, h6 {
+    font-family: 'Permanent Marker', Georgia, Times, serif;
+  } 
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 95%;
+        margin: 5%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 95%;
+        margin: 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Locations of Crimes for Asian Males Under 18</h1>
+    <div id="map"></div>
+    <script>
+
+      // The following example creates complex markers to indicate crimes near
+      // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+      // to the base of the flagpole.
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10.5,
+          center: {lat: 40.730610, lng: -73.935242}
+        });
+
+        setMarkers(map);
+      }
+
+      // Data for the markers consisting of a name, a LatLng and a zIndex for the
+      // order in which these markers should display on top of each other.
+      var crimes = [['', 40.5442923, -74.19785833], ['"ROBBERY', 40.56961194, -74.10815663], ['RECKLESS ENDANGERMENT 1', 40.57401291, -73.98968844], ['"CONTROLLED SUBSTANCE', 40.57833049, -74.09112529], ['"TRAFFIC', 40.59457303, -73.9594677], ['"TRAFFIC', 40.59496331, -73.78626615], ['"MISCHIEF', 40.599344, -73.98379327], ['"ASSAULT 2', 40.6020707, -74.00269151], ['ASSAULT 3', 40.61144634, -74.01185453], ['"BURGLARY', 40.61411519, -73.94444348], ['"MARIJUANA', 40.61818542, -73.99927383], ['"CONTROLLED SUBSTANCE', 40.62186324, -73.99306715], ['"CONTROLLED SUBSTANCE', 40.62432835, -74.02475328], ['"ASSAULT 2', 40.62572502, -73.99104938], ['ASSAULT 3', 40.62665582, -74.00262405], ['"BURGLARY', 40.6285156, -73.9413837], ['"MISCHIEF', 40.62955209, -73.96607533], ['"ASSAULT 2', 40.63074067, -73.96637375], ['"WEAPONS', 40.63148958, -73.97561082], ['"LARCENY', 40.63224055, -73.94762406], ['"PUBLIC ADMINISTATION', 40.63264155, -74.01253563], ['"WEAPONS', 40.63475278, -74.00675333], ['WEAPONS POSSESSION 3', 40.63665891, -73.96803897], ['"ASSAULT 2', 40.63919835, -74.01646791], ['ASSAULT 3', 40.64083294, -73.9653021], ['ASSAULT 3', 40.64112357, -74.00371281], ['"GAMBLING 2', 40.641612, -74.00679005], ['WEAPONS POSSESSION 3', 40.64191714, -74.08667916], ['ASSAULT 3', 40.64234773, -74.00422816], ['"CONTROLLED SUBSTANCE', 40.64269914, -74.0002789], ['ASSAULT 3', 40.64875224, -74.02087758], ['"ASSAULT 2', 40.65799307, -74.00069345], ['"PUBLIC ADMINISTATION', 40.65904129, -73.84086702], ['ASSAULT 3', 40.66684125, -73.98494478], ['"FORGERY', 40.66918366, -73.92071055], ['ASSAULT 3', 40.67036646, -73.91284696], ['"ROBBERY', 40.67141166, -73.88151172], ['"LARCENY', 40.67198359, -73.95749923], ['"THEFT OF SERVICES', 40.67452948, -73.80320382], ['"ASSAULT 2', 40.67677959, -73.82310873], ['"MENACING', 40.6769375, -73.82406008], ['"MISCHIEF', 40.67760528, -73.82821878], ['"ROBBERY', 40.67969663, -73.86056429], ['LEAVING SCENE-ACCIDENT-PERSONA', 40.68004873, -73.77590919], ['"LARCENY', 40.6803924, -73.81825709], ['ASSAULT 3', 40.68239829, -73.84007937], ['ASSAULT 3', 40.68298303, -73.83243422], ['TAX LAW', 40.68298678, -73.79262183], ['"FORGERY-ILLEGAL POSSESSION', 40.68376086, -73.81691385], ['"WEAPONS', 40.68432441, -73.81920186], ['"ASSAULT 2', 40.68647248, -73.82025973], ['"BURGLARY', 40.68696425, -73.82232089], ['"LARCENY', 40.68936647, -73.82809833], ['"MISCHIEF', 40.6909072, -73.80785045], ['ASSAULT 3', 40.69224167, -73.987301], ['"LARCENY', 40.69240389, -73.99007041], ['"CONTROLLED SUBSTANCE', 40.69252938, -73.94138873], ['RECKLESS ENDANGERMENT 2', 40.69304359, -73.82751188], ['"CONTROLLED SUBSTANCE', 40.69305808, -73.85383985], ['"BURGLARY', 40.69338044, -73.76776146], ['"PUBLIC ADMINISTATION', 40.69382486, -73.80295935], ['ASSAULT 3', 40.69624079, -73.84250203], ['"ROBBERY', 40.69843969, -73.83112954], ['"TRAFFIC', 40.70060164, -73.85456625], ['"CHILD', 40.70426739, -73.89355376], ['"IMPRISONMENT 2', 40.70451983, -73.8934704], ['"TRESPASS 3', 40.70874677, -73.80212532], ['OBSTR BREATH/CIRCUL', 40.70879365, -73.76704409], ['"ROBBERY', 40.71067041, -73.79870374], ['"TRESPASS 3', 40.71195209, -73.98985468], ['"LARCENY', 40.7124115, -73.8262173], ['RECKLESS ENDANGERMENT 2', 40.71313807, -73.99311898], ['"CONTROLLED SUBSTANCE', 40.71345618, -73.98936387], ['WEAPONS POSSESSION 3', 40.71482461, -73.80266279], ['AGGRAVATED HARASSMENT 1', 40.72279798, -73.85195636], ['"LARCENY', 40.72867225, -73.73333343], ['"STOLEN PROPERTY 3', 40.72906475, -73.81102013], ['"CRIMINAL MISCHIEF 4TH', 40.73051719, -73.86617681], ['"ROBBERY', 40.73140866, -73.86805847], ['"LARCENY', 40.73189034, -73.99454588], ['"ROBBERY', 40.73357547, -73.991955], ['"LARCENY', 40.73388303, -74.00542831], ['"LARCENY', 40.73392684, -73.8715824], ['"MARIJUANA', 40.73621859, -73.99098402], ['"LARCENY', 40.73625188, -74.00091077], ['"FORGERY', 40.73950776, -73.94502456], ['"ROBBERY', 40.73981598, -73.98244196], ['"CONTROLLED SUBSTANCE', 40.74051214, -73.79287943], ['"LARCENY', 40.74157799, -73.88064355], ['ASSAULT 3', 40.74223357, -73.79467124], ['"ROBBERY', 40.7450003, -73.87012832], ['"CONTROLLED SUBSTANCE', 40.74977382, -73.90750981], ['"LARCENY', 40.75043077, -73.98928218], ['"ROBBERY', 40.75121561, -73.93718287], ['"LARCENY', 40.75215282, -73.97773582], ['ASSAULT 3', 40.75341289, -73.77834054], ['"LARCENY', 40.75346408, -73.99439974], ['"WEAPONS', 40.75421183, -73.83583557], ['"LARCENY', 40.7557431, -73.79612753], ['ASSAULT 3', 40.75640979, -73.76975435], ['WEAPONS POSSESSION 1 & 2', 40.75648234, -73.94726649], ['"ROBBERY', 40.75659468, -73.87560302], ['"ROBBERY', 40.7573946, -73.82753655], ['"ROBBERY', 40.75814201, -73.91028481], ['"LARCENY', 40.75823237, -73.97743058], ['ASSAULT 3', 40.76015719, -73.76742395], ['OBSTR BREATH/CIRCUL', 40.76155546, -73.83112113], ['"MURDER', 40.76204389, -73.82732958], ['"LARCENY', 40.76397622, -73.97324113], ['"LARCENY', 40.76502408, -73.98483595], ['"ROBBERY', 40.76591415, -73.99275614], ['"ROBBERY', 40.76599975, -73.93894145], ['ASSAULT 3', 40.76672942, -73.91269199], ['"MISCHIEF', 40.77139421, -73.92661449], ['"STOLEN PROPERTY 3', 40.77363078, -73.94572931], ['"LARCENY', 40.77423778, -73.98210072], ['ASSAULT 3', 40.77512293, -73.90926182], ['"LARCENY', 40.78450737, -73.97548256], ['"TRESPASS 3', 40.79501284, -73.93613752], ['ASSAULT 3', 40.79574638, -73.94268111], ['"ROBBERY', 40.79898611, -73.94461787], ['"SEXUAL ABUSE 3', 40.80069433, -73.94110929], ['WEAPONS POSSESSION 1 & 2', 40.81572025, -73.86450258], ['"ROBBERY', 40.81592955, -73.94516736], ['"LARCENY', 40.82752009, -73.92494464], ['ASSAULT 3', 40.83390575, -73.88926647], ['"CONTROLLED SUBSTANCE', 40.83790432, -73.86323951], ['WEAPONS POSSESSION 3', 40.85078009, -73.86585895], ['RECKLESS ENDANGERMENT 1', 40.86121369, -73.85974991], ['"WEAPONS', 40.86122247, -73.86020179], ['ASSAULT 3', 40.8775234, -73.89089701], ['"ROBBERY', 40.88197862, -73.90726081]] ;
+
+      function setMarkers(map) {
+        // Adds markers to the map.
+
+        // Marker sizes are expressed as a Size of X,Y where the origin of the image
+        // (0,0) is located in the top left of the image.
+
+        // Origins, anchor positions and coordinates of the marker increase in the X
+        // direction to the right and in the Y direction down.
+        var image = {
+          url: 'http://maps.google.com/mapfiles/ms/micons/caution.png',
+          
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(100 , 175),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+        // Shapes define the clickable region of the icon. The type defines an HTML
+        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+        // The final coordinate closes the poly by connecting to the first coordinate.
+        var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };
+        for (var i = 0; i < crimes.length; i++) {
+          var crime = crimes[i];
+          var marker = new google.maps.Marker({
+            position: {lat: crime[1], lng: crime[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: crime[0],
+            zIndex: crime[3]
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3_xok-TQUL0BagOPW1_CW457yLVb8R5o&callback=initMap">
+    </script>
+    <h2> Tips </h2>
+    <ul>
+      <li> Zoom in to see location details</li>
+      <li> Hover over icon to see reason for arrest</li>
+      <li> The data used in this map was collected from January 1, 2019 to July 19, 2019 from the New York Police Department. 
+    </ul>
+    <h2>Explore Similar Maps</h2>
+    <ol>
+      <li><a href=http://127.0.0.1:5000/HispanicMale18Crime> Crime: Hispanic Males, Under 18</a></li>
+      <li><a href="http://127.0.0.1:5000/WhiteMale18Crime"> Crime: White Males, Under 18</a></li>
+      <li><a href="http://127.0.0.1:5000/AsianFemale18Crime"> Crime: Asian Females, Under 18</a></li>
+    </ol>
+    <h1><a href="http://127.0.0.1:5000/home"> Click Here to Return Home</a></h1>
+  </body>
+</html>

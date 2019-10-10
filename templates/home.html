@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NYCYD: New York City Youth Danger</title>
+<link href="http://fonts.googleapis.com/css?family=Permanent Marker:regular" rel="stylesheet" type="text/css">
+<style>
+body {
+background-color: #d3d3d3;
+} 
+h1{
+   text-align: center;
+   font-family: Georgia Header;
+   color:red;
+   font-weight: bold;
+   font-size: 50px;
+   
+}
+p{
+   text-align: center;
+   font-family: verdana;
+   color: purple;
+   font-weight: bold;
+   font-size: 20px;
+}
+.navbar {
+  overflow: hidden;
+  background-color: black;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 100px;
+  background-color: inherit;
+  font-family: Permanent Marker;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 50px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-family: Permanent Marker, Georgia, Times, serif; 
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* key stuff */
+.your-centered-div {
+    width: 500px; /* you have to have a size or this method doesn't work */
+    height: 400px; /* think about making these max-width instead - might give you some more responsiveness */
+
+    position: relative; /* positions out of the flow, but according to the nearest parent */
+    top: 0; right: 0; /* confuse it i guess */
+    bottom: 0; left: 0;
+    margin: auto; /* make em equal */
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Permanent Marker', Georgia, Times, serif;
+  } 
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="http://127.0.0.1:5000/about">About</a>
+  <div class="dropdown">
+    <button class="dropbtn">Black 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="http://127.0.0.1:5000/BlackFemale18Crime">Female</a>
+      <a href="http://127.0.0.1:5000/BlackMale18Crime">Male</a>
+    </div>
+  </div> 
+  
+  <div class="dropdown">
+    <button class="dropbtn">White 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="http://127.0.0.1:5000/WhiteFemale18Crime">Female</a>
+      <a href="http://127.0.0.1:5000/WhiteMale18Crime">Male</a>
+    </div>
+  </div> 
+  
+  <div class="dropdown">
+    <button class="dropbtn">Asian 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="http://127.0.0.1:5000/AsianFemale18Crime">Female</a>
+      <a href="http://127.0.0.1:5000/AsianMale18Crime">Male</a>
+    </div>
+  </div> 
+  
+  <div class="dropdown">
+    <button class="dropbtn">Hispanic 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="http://127.0.0.1:5000/HispanicFemale18Crime">Female</a>
+      <a href="http://127.0.0.1:5000/HispanicMale18Crime">Male</a>
+    </div>
+  </div> 
+
+</div>
+
+<h1>Beware: The City of Danger</h1>
+<p>Click to see the discrepancies of crimes amongst different age groups, racial categories and gender divisions</p>
+<div class = "your-centered-div">
+	<iframe class = "hello" width="500px" height="400px"
+		src="https://www.youtube.com/embed/GRphOfRHHS4">
+	</iframe>
+</div>
+</body>
+</html>

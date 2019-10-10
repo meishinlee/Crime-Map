@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="http://fonts.googleapis.com/css?family=Permanent Marker:regular" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Oswald:bold" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>White Female - Under 18 Crimes</title>
+    <style>
+      body {
+  background-color: #d3d3d3;
+       font-family: 'Oswald', serif;
+       color: black;
+} 
+      h1, h2, h3, h4, h5, h6 {
+    font-family: 'Permanent Marker', Georgia, Times, serif;
+  } 
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 95%;
+        margin: 5%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 95%;
+        margin: 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Locations of Crimes for White Females Under 18</h1>
+    <div id="map"></div>
+    <script>
+
+      // The following example creates complex markers to indicate crimes near
+      // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+      // to the base of the flagpole.
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10.5,
+          center: {lat: 40.730610, lng: -73.935242}
+        });
+
+        setMarkers(map);
+      }
+
+      // Data for the markers consisting of a name, a LatLng and a zIndex for the
+      // order in which these markers should display on top of each other.
+      var crimes = [['ASSAULT 3', 40.51158634, -74.24930373], ['"ASSAULT 2', 40.57389255, -74.0033743], ['LEAVING SCENE-ACCIDENT-PERSONA', 40.57414013, -74.10600776], ['ASSAULT 3', 40.57462946, -74.09577104], ['AGGRAVATED HARASSMENT 2', 40.59406298, -73.96086869], ['"CONTROLLED SUBSTANCE', 40.59478615, -74.12547032], ['"LARCENY', 40.59497817, -74.00106367], ['ASSAULT 3', 40.60114946, -73.94588391], ['"ROBBERY', 40.6020707, -74.00269151], ['"ROBBERY', 40.60436488, -74.01074048], ['ASSAULT 3', 40.60489786, -74.0015464], ['"CONTROLLED SUBSTANCE', 40.60730495, -74.00500025], ['ASSAULT 3', 40.60988756, -73.96337332], ['"LARCENY', 40.60990013, -73.92237286], ['"ASSAULT 2', 40.61144634, -74.01185453], ['ASSAULT 3', 40.61439832, -73.95840393], ['"MENACING', 40.61472419, -73.99655808], ['"THEFT OF SERVICES', 40.62031211, -73.98899328], ['"CONTROLLED SUBSTANCE', 40.62072204, -73.95763272], ['"LARCENY', 40.62322682, -74.14922697], ['RIOT 2/INCITING', 40.62781408, -74.0795422], ['"PUBLIC ADMINISTRATION', 40.63068216, -73.97355397], ['"ROBBERY', 40.644798, -74.01432523], ['"ROBBERY', 40.64502275, -74.07721685], ['"MENACING', 40.65761275, -73.9811733], ['"PERJURY 3', 40.68004873, -73.77590919], ['"ROBBERY', 40.68112594, -73.97436682], ['ASSAULT 3', 40.68239829, -73.84007937], ['ASSAULT 3', 40.7034783, -73.88922705], ['"ASSAULT 2', 40.70913663, -73.81886044], ['ASSAULT 3', 40.71012075, -73.87335962], ['"PUBLIC ADMINISTATION', 40.72522175, -73.86549474], ['"LARCENY', 40.72601663, -73.99628535], ['FALSE REPORT UNCLASSIFIED', 40.73360453, -73.98198896], ['"LARCENY', 40.73702312, -73.99709303], ['"TRESPASS 3', 40.74347046, -74.005393], ['"LARCENY', 40.75043077, -73.98928218], ['"LARCENY', 40.75104818, -73.98771207], ['"LARCENY', 40.7569782, -73.97834061], ['"LARCENY', 40.75823237, -73.97743058], ['"LARCENY', 40.76795511, -73.98236234], ['ASSAULT 3', 40.76981491, -73.74862055], ['"ASSAULT 2', 40.77785098, -73.95574909], ['"LARCENY', 40.78391606, -73.94733504], ['"ROBBERY', 40.7878746, -73.92818165], ['"MISCHIEF', 40.81760769, -73.91908136], ['"STOLEN PROPERTY-MOTOR VEH 2ND', 40.8746635, -73.86269022]] ;
+
+      function setMarkers(map) {
+        // Adds markers to the map.
+
+        // Marker sizes are expressed as a Size of X,Y where the origin of the image
+        // (0,0) is located in the top left of the image.
+
+        // Origins, anchor positions and coordinates of the marker increase in the X
+        // direction to the right and in the Y direction down.
+        var image = {
+          url: 'http://maps.google.com/mapfiles/ms/micons/caution.png',
+          
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(100 , 175),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+        // Shapes define the clickable region of the icon. The type defines an HTML
+        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+        // The final coordinate closes the poly by connecting to the first coordinate.
+        var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };
+        for (var i = 0; i < crimes.length; i++) {
+          var crime = crimes[i];
+          var marker = new google.maps.Marker({
+            position: {lat: crime[1], lng: crime[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: crime[0],
+            zIndex: crime[3]
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3_xok-TQUL0BagOPW1_CW457yLVb8R5o&callback=initMap">
+    </script>
+    <h2> Tips </h2>
+    <ul>
+      <li> Zoom in to see location details</li>
+      <li> Hover over icon to see reason for arrest</li>
+      <li> The data used in this map was collected from January 1, 2019 to July 19, 2019 from the New York Police Department. 
+    </ul>
+    <h2>Explore Similar Maps</h2>
+    <ol>
+      <li><a href=http://127.0.0.1:5000/WhiteMale18Crime> Crime: White Males, Under 18</a></li>
+      <li><a href="http://127.0.0.1:5000/BlackFemale18Crime"> Crime: Black Females, Under 18</a></li>
+      <li><a href="http://127.0.0.1:5000/AsianFemale18Crime"> Crime: Asian Females, Under 18</a></li>
+    </ol>
+    <h1><a href="http://127.0.0.1:5000/home"> Click Here to Return Home</a></h1>
+  </body>
+</html>
