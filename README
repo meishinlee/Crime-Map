@@ -1,1 +1,5 @@
+This project explores the number of crimes that have happened in NYC between Jan. 2018 to Jul. 2018. This project explores the type and amount of crimes sorted by gender, age, and age. 
 
+While this is just the first version of our map, the statistics and display for all crimes committed by youth (of all races) have been mapped out. Additional features and functionality, which are to be added include filtering between type of crime and expanding our data set. 
+
+This project was made with Python and HTML/CSS/Javascript. Usage of Google Map's API was also integrated to enhance graphics and display crime locations. 
